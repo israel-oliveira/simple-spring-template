@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import application.model.Jogo;
 import application.model.Plataforma;
 import application.repository.CategoriaRepository;
-import application.repository.PlataformaRepository;
 import application.repository.JogoRepository;
+import application.repository.PlataformaRepository;
 
 @Controller
 @RequestMapping("/jogo")
@@ -42,15 +42,15 @@ public class JogoController {
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String insert(
-            @RequestParam("titulo") String titulo,
-            @RequestParam("categoria") long idCategoria,
-            @RequestParam("plataformas") long[] idsPlataformas) {
+        @RequestParam("titulo") String titulo,
+        @RequestParam("categoria") long idCategoria,
+        @RequestParam("plataformas") long[] idsPlataformas) {
 
         Jogo jogo = new Jogo();
         jogo.setTitulo(titulo);
         jogo.setCategoria(categoriaRepo.findById(idCategoria).get());
-        for (long idPlataforma : idsPlataformas) {
-            Optional<Plataforma> plataforma = plataformaRepo.findById(idPlataforma);
+        for (long p : idsPlataformas) {
+            Optional<Plataforma> plataforma = plataformaRepo.findById(p);
             if (plataforma.isPresent()) {
                 jogo.getPlataformas().add(plataforma.get());
             }
@@ -64,7 +64,7 @@ public class JogoController {
         @RequestParam("id") long id,
         Model ui) {
 
-        Optional<application.Model.Jogo> jogo = jogoRepo.findById(id);
+        Optional<Jogo> jogo = jogoRepo.findById(id);
         if (jogo.isPresent()) {
             ui.addAttribute("jogo", jogo.get());
             ui.addAttribute("categorias", categoriaRepo.findAll());
@@ -86,14 +86,14 @@ public class JogoController {
         if (jogo.isPresent()) {
             jogo.get().setTitulo(titulo);
             jogo.get().setCategoria(categoriaRepo.findById(idCategoria).get());
-            Set<Plataforma> updatePlataformas = new HashSet<>();
+            Set<Plataforma> updatePlataforma = new HashSet<>();
             for (long p : idsPlataformas) {
                 Optional<Plataforma> plataforma = plataformaRepo.findById(p);
                 if (plataforma.isPresent()) {
-                    updatePlataformas.add(plataforma.get());
+                    updatePlataforma.add(plataforma.get());
                 }
             }
-            jogo.get().setPlataformas(updatePlataformas);
+            jogo.get().setPlataformas(updatePlataforma);
             jogoRepo.save(jogo.get());
         }
         return "redirect:/jogo/list";

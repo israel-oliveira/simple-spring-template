@@ -10,7 +10,7 @@
     <body>
         <div class="container">
         <h1>Categorias</h1>
-            <a href="/categoria/insert" class="btn btn-primary">Novo Categoria</a>
+            <a href="/categoria/insert" class="btn btn-primary">Nova Categoria</a>
             <table class="table">
                 <tr>
                     <th>Id</th>

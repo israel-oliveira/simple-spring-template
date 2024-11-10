@@ -1,6 +1,5 @@
 package application.model;
 
-import java.lang.annotation.Inherited;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,18 +20,18 @@ public class Categoria {
     @Column(unique = true, nullable = false)
     private String nome;
 
-    @OneToMany(mappedBy = "Categoria")
+    @OneToMany(mappedBy = "categoria")
     private Set<Jogo> jogos = new HashSet<>();
 
     public long getId() {
         return id;
     }
 
-    public setId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public string getNome() {
+    public String getNome() {
         return nome;
     }
 
@@ -40,7 +39,7 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public Set<Jogo> getJogos () {
+    public Set<Jogo> getJogos() {
         return jogos;
     }
 

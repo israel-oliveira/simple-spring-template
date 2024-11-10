@@ -1,4 +1,4 @@
-<%@ page language="java" contentType=text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -19,5 +19,6 @@
                 <a href="/plataforma/list" class="btn btn-primary" >Voltar</a>
                 <button type="submit" class="btn btn-success">Salvar</button>
             </form>
+        </div>
     </body>
 </html>

@@ -15,21 +15,21 @@ import application.repository.PlataformaRepository;
 @Controller
 @RequestMapping("/plataforma")
 public class PlataformaController {
-        @Autowired
-        private PlataformaRepository plataformaRepo;
+    @Autowired
+    private PlataformaRepository plataformaRepo;
 
-        @RequestMapping("/list")
-        public String list(Model ui) {
-            ui.addAttribute("plataformas", plataformaRepo.findAll());
-            return "plataforma/list";
-        }
+    @RequestMapping("/list")
+    public String list(Model ui) {
+        ui.addAttribute("plataformas", plataformaRepo.findAll());
+        return "plataforma/list";
+    }
 
-        @RequestMapping("/insert")
-        public String insert() {
-            return "plataforma/insert";
-        }
+    @RequestMapping("/insert")
+    public String insert() {
+        return "plataforma/insert";
+    }
 
-        @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String insert(@RequestParam("nome") String nome) {
         Plataforma plataforma = new Plataforma();
         plataforma.setNome(nome);
